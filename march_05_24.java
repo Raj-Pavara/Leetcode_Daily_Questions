@@ -67,6 +67,7 @@ public static int minimumLength(String s) {
             ch = s.charAt(left);
             
         }
-        return right - left;
+        return right - left+1;
+
 }
 }
