@@ -40,8 +40,8 @@ public static void main(String args[]){
 
 }
 public static int[][] insert(int[][] intervals, int[] newInterval) {
-      public int[][] insert(int[][] intervals, int[] newInterval) {
-        // Step 1: Convert array to list
+
+    // Step 1: Convert array to list
         List<int[]> intervalsList = new ArrayList<>(Arrays.asList(intervals));
         // Add new interval to the list
         intervalsList.add(newInterval);
@@ -64,6 +64,6 @@ public static int[][] insert(int[][] intervals, int[] newInterval) {
             ans[i] = ansList.get(i);
         }
         return ans;
-    }
+    
     }
 }
