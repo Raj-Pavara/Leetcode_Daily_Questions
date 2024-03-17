@@ -41,29 +41,28 @@ public static void main(String args[]){
 }
 public static int[][] insert(int[][] intervals, int[] newInterval) {
 
-    // Step 1: Convert array to list
-        List<int[]> intervalsList = new ArrayList<>(Arrays.asList(intervals));
-        // Add new interval to the list
-        intervalsList.add(newInterval);
-        // Sort intervals based on start value
-        Collections.sort(intervalsList, (a, b) -> Integer.compare(a[0], b[0]));
-
-        // Step 2: Merge intervals
-        List<int[]> ansList = new ArrayList<>();
-        for (int[] interval : intervalsList) {
-            if (ansList.size() == 0 || ansList.get(ansList.size() - 1)[1] < interval[0]) {
-                ansList.add(interval);
-            } else if (ansList.get(ansList.size() - 1)[1] >= interval[0]) {
-                ansList.get(ansList.size() - 1)[1] = Math.max(ansList.get(ansList.size() - 1)[1], interval[1]);
+            ArrayList<int []> al=new ArrayList<>();
+            int i=0;
+            for(i=0;i<intervals.length;i++){
+                if(intervals[i][1]<newInterval[0]){
+                    al.add(intervals[i]);
+                }
+                else if(intervals[i][0]>newInterval[1]){
+                    break;
+                }
+                else{
+                    newInterval[0]=Math.min(intervals[i][0],newInterval[0]);
+                    newInterval[1]=Math.max(intervals[i][1],newInterval[1]);
+                }
             }
-        }
-
-        // Step 3: Convert list back to array
-        int[][] ans = new int[ansList.size()][2];
-        for (int i = 0; i < ansList.size(); i++) {
-            ans[i] = ansList.get(i);
-        }
-        return ans;
+            al.add(newInterval);
+            
+            while(i<intervals.length){
+                al.add(intervals[i]);
+                i++;
+            }
+    
+            return al.toArray(new int[al.size()][]);
     
     }
 }
